@@ -8,6 +8,13 @@ var config    = require(path.join(__dirname, '..', 'config', 'config.json'))[env
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
 var db        = {};
 
+///////////////////////////////////
+// attempting to deploy to heroku
+if (process.env.JAWSDB_URL) {
+  sequelize = new Sequelize(process.env.JAWSDB_URL); 
+}
+///////////////////////////////////
+
 fs
   .readdirSync(__dirname)
   .filter(function(file) {
